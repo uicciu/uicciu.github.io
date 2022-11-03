@@ -7,3 +7,5 @@
 > 咱就是说，就是不会
 
 看题正常思路进行
+![image](https://github.com/uicciu/image/blob/main/ping3.png)
+在这里输入一个正常地址---?ip=127.0.0.1
