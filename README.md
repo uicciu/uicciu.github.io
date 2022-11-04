@@ -32,3 +32,5 @@
 改为输入---cat$IFS$index.php
 ![image](https://github.com/uicciu/image/blob/main/ping5.png)
 又看不懂了 
+![image](https://github.com/uicciu/image/blob/main/ping9.png)
+这个是源码 两相对照 发现换了好多 有了一个新方法 
