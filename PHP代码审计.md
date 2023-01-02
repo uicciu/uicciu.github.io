@@ -136,6 +136,8 @@ array_search — Searches the array for a given value and returns the first corr
 
 最后根据json编码格式对c进行编码即可。
 
+* __提交__
+
 得到payload：http://ip:port/?a=1e9&b=53724&c={"m":"12345a","n":[[],0]}
 
 夺得flag：cyberpeace{2f87e8aeec5e1909dc7f3dad473b7cd1}
