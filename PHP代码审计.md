@@ -1,14 +1,14 @@
-# php 代码审计
+# T1 php 代码审计
 
 > 题目 攻防世界easyphp
 
-* __看题__
+ __0x00 看题__
 
 题目如图，很密密麻麻一串代码
 
 ![image](https://github.com/uicciu/image/blob/main/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A11.png)
 
-* __思路__
+ __0x01 思路__
 
 > 几个重点条件函数
 
@@ -26,7 +26,7 @@
         $key2 = 1;
 ```
 
-* __求解__
+ __0x02 求解__
 
 ### 1.if(isset($a) && intval($a) > 6000000 && strlen($a) <= 3)
 
@@ -136,8 +136,12 @@ array_search — Searches the array for a given value and returns the first corr
 
 最后根据json编码格式对c进行编码即可。
 
-* __提交__
+ __0x03 提交__
 
 得到payload：http://ip:port/?a=1e9&b=53724&c={"m":"12345a","n":[[],0]}
 
 夺得flag：cyberpeace{2f87e8aeec5e1909dc7f3dad473b7cd1}
+
+__0x04 summary__
+
+* 几个重要函数，PHP弱类型，PHP代码审计重点在于读懂可能隐含漏洞的代码块
