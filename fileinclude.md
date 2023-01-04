@@ -85,4 +85,13 @@ __0x03 总结__
 2. 何为文件包含？有一个问题，为何'@include($lan.".php")' 存在漏洞，即明明echo内容为index.php但是最终得到flag.php，攻防世界官方WP中给出 _源代码中看到` @include($lan.".php"); `，可知此处存在文件包含_ 目前还不知道如何看出
 3. 同时可以通过BurpSuit抓包更改Cookie
  
+__0x04 补充__
 
+攻防世界新手题中还有另一道名为fileinclude的题目，两者相似都需要进行代码审计，通过PHP伪协议传入，以下是补充PHP伪协议类型：
+
+1. php://input:is a read-only stream that allows you to read raw data from the request body. php://input is not available with enctype="multipart/form-data".将执行代码通过在POST data中提交
+2. php://filter:s a kind of meta-wrapper designed to permit the application of filters to a stream at the time of opening.
+
+> php://filter/read=convert.base64-encode/resource={文件名}
+
+3. data:// :将攻击代码转换为data:URL形式进行攻击，以传递相应格式的数据用来执行PHP代码。为了防止直接在URL连接中的一些敏感字符被waf检测拦截，可将攻击代码进行base64编码。
