@@ -40,7 +40,9 @@ __0x01 解题__
 4. 再次加入（Referer：https://www.google.com）
 5. 刷新
 
+__0x02 总结__
 
+1. 关于请求头中出现的referer,xff,的翻译与应用
 
 
 
