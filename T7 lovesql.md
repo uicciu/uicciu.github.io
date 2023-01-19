@@ -65,7 +65,7 @@ Unknown column '4' in 'order clause'
 
 2. 判断三个字段，接下来寻找注点（有经验的大佬都能猜出字段为：id，username，password）
 ```
-?username=1' union select 1,2,3%23&password=123
+?username=admin&password=1231' union select 1,2,3%23
 ```
 
 回显:
