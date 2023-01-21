@@ -43,5 +43,8 @@ flag就在这里
 
 发现不用查看源代码 flag直接展示
 
-tac是cat函数的反写
+__总结__
+
+1. tac是cat函数的反写
 > 查看根目录下文件 ---ls/
+2. 关于过滤的技巧[详情](https://zhuanlan.zhihu.com/p/550877208)
