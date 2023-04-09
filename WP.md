@@ -73,9 +73,6 @@ A||B A执行失败，然后才会执行B
 > 说是有权限限制为啥没遇到，但是在比赛中我确实遇到了禁止访问flag权限不够，尝试了su,sudo,chmod等等直接搞崩了连接还是不行，结果结束比赛步骤都一样就又行了？
 
 
-
-
-
 * [Web] think
 
 > 已知问题出现于thinkphp的多语言漏洞，却无法与蚁剑最后实现连接。
@@ -83,6 +80,15 @@ A||B A执行失败，然后才会执行B
 果然考察的是活学活用，thinkphp v6.0.12的多语言rce漏洞，很新啊，得先学
 
 可以参考[借鉴](https://blog.vvbbnn00.cn/archives/realworldctf2023-ti-yan-sai-bu-fen-ti-jie)
+
+[Thinkphp6完全开发手册](https://www.kancloud.cn/manual/thinkphp6_0/1037637)
+ 
+ 原理：
+ 
+> 程序本身开启了多语言功能，攻击者可以通过get，post，header，cookie等位置传入参数。实现目录穿越+文件包含，通过pearcmd文件包含这个trick即可实现RCE。
+
+> 多语言中间件：
+>  > 开启了多应用模式的情况下：全局中间删掉了注释的情况下，在具体的应用下面的middleware.php 也要启用 \think\middleware\LoadLangPack::class 该应用模块才能识别多语言
 
 * [Web] y1's Blog
 
