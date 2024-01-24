@@ -17,4 +17,9 @@ __0x01__ 安装下载
 2. 将kali虚拟机中的cs4.0文件同时存入win11客户机一份
 
 * 目录展示
-  
+![image](https://github.com/uicciu/image/blob/main/1.png)
+
+> 其中最重要的是teamserver（服务端程序）以及cobaltstrike，cobaltstrike.jar（客户端程序）
+
+__0x02__ 具体操作
+
