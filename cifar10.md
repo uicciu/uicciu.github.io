@@ -1,6 +1,6 @@
 # Algebraic Attack on Convolutional Neural1 Network with Max Pooling
 
-## Overview
+## Project Overview
 
 This repository provides tools to recover convolutional layer parameters (weights, biases) from CNN models, specifically designed for CIFAR-10 classification. 
 
@@ -26,7 +26,12 @@ pip install torch numpy scipy jax jaxlib matplotlib networkx
 Because the model has already been trained using `create_CNN.py` and saved in the `model/` directory, the parameters can be extracted directly.
 
 extract it with
-> python Attack.py 
-
+```bash
+python Attack.py 
+```
 check the quality of this extraction with
-> python check_solution.py
+```bash
+python check_solution.py
+```
+
+---
