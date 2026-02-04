@@ -35,7 +35,7 @@ pip install torch numpy scipy jax jaxlib matplotlib networkx
 
 ## Workflow Pipeline
 
-The model has already been trained using `create_CNN.py`. We provide the corresponding model (`simple_cnn_3+1_padding2.pth`) in the repository, which is ready for direct use.
+The model has already been trained using `create_CNN.py`. We provide the corresponding model (`simple_cnn_e.pth`) in the repository, which is ready for direct use.
 
 ### STEP1:第一层卷积层参数提取
 
@@ -50,10 +50,27 @@ python AttackCNN.py
 
 #### 寻找并提取第二层关键点
 ```bash
-python Attack_all.py
+python AttackLayer2_findwitnesses.py
 ```
-This script is largely consistent with the weight recovery workflow for the (2+1) CNN model. It serves as the master control program for the entire attack framework and implements a complete, fully automated chained attack pipeline for multi-layer convolutional neural networks.
+使用第一层的恢复参数,筛选出能够穿透第一层、直接反映第二层神经元行为的Valid Witnesses,将验证通过的点分批次(BATCH_SIZE)存储在 results/BlackBox_witnesses/ 目录下。
 
+#### 将第二层关键点进行聚类
+```bash
+python AttackLayer2_gather.py
+```
+将第二层关键点进行聚类，分别存储对应法向量(存储在results/BlackBox_layer2_results/ 目录下)，以及为后续第三层（Layer 3）攻击筛选有效关键点，存储于layer2_to_layer3_witnesses.pt。
+
+#### 恢复第二层权重
+```bash
+python AttackLayer2.py
+```
+在已知第一层参数的基础上，通过聚合前期采集的关键点数据，利用数学推导解算出第二层的权重和偏置。
+
+#### 误差分析
+```bash
+python check_solution.py
+---
+在黑盒攻击场景下，验证通过观察输入输出扰动提取到的参数，在数学上是否与目标模型等价。
 
 ---
 
