@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This repository provides tools to recover convolutional layer parameters (weights, biases) from 经典LeNet5模型
+This repository provides tools to recover the parameters (weights and biases) of convolutional layers from the classic LeNet-5 model.
 
 ## Model Architecture
 
-The model follows a LeNet-5–style architecture with two convolution–pooling blocks followed by three fully connected layers for 10-class classification.
+The model follows a **LeNet-5–style** architecture with two convolution–pooling blocks followed by three fully connected layers for 10-class classification.
 
 1 × 32 × 32
 
@@ -23,6 +23,44 @@ The model follows a LeNet-5–style architecture with two convolution–pooling 
 → FC(84→10)
 
 
+## Workflow Pipeline
+
+The model has already been trained using `create_CNN.py`. We provide the corresponding model (`simple_cnn_e.pth`) in the repository, which is ready for direct use.
+
+### STEP1: Extraction of the First Convolutional Layer Parameters
+
+```bash
+python AttackCNN.py
+```
+This script fully and automatically extracts and recovers the weights of the first convolutional layer, performs error analysis, and saves the reconstructed weights and biases as `layer1_recovered_weights.npy` and layer1_recovered_bias.npy respectively.
+
+It filters out points only relevant to the activation of the first layer, screens key candidate points that can propagate to the second layer, and saves them as `layer1_to_layer2_witnesses.pt`.
+
+### STEP2:Extraction of the Second Convolutional Layer Parameters
+
+#### Finding and Extracting Key Points for the Second Layer
+```bash
+python AttackLayer2_findwitnesses.py
+```
+Using the recovered parameters of the first layer, this script screens Valid Witnesses—points that penetrate the first layer and directly reflect the behavior of second-layer neurons. The validated points are stored in batches (BATCH_SIZE) in the `results/BlackBox_witnesses/ directory`.
+
+#### Gathering Witnesses for the Second Layer
+```bash
+python AttackLayer2_gather.py
+```
+This script gathers and clusters the key points of the second layer, stores the corresponding normal vectors in the `results/BlackBox_layer2_results/ directory`, and screens valid key points for the subsequent attack on the third layer (Layer 3), which are saved as `layer2_to_layer3_witnesses.pt`.
+
+#### Recovering Weights of the Second Layer
+```bash
+python AttackLayer2.py
+```
+Based on the known parameters of the first layer, this script calculates and solves the weights and biases of the second layer by aggregating the previously collected key point data and leveraging mathematical derivations.
+
+#### Error Analysis
+```bash
+python check_solution.py
+```
+In a black-box attack scenario, this script verifies whether the parameters extracted by observing input-output perturbations are mathematically equivalent to those of the target model.
 
 ## Explanation of this Codebase
 This codebase bases its structure from Carlini et al's codebase that can be found under https://github.com/google-research/cryptanalytic-model-extraction.All convolutional and max-pooling specific components are implemented independently in this work.
@@ -32,45 +70,6 @@ This codebase bases its structure from Carlini et al's codebase that can be foun
 ```bash
 pip install torch numpy scipy jax jaxlib matplotlib networkx
 ```
-
-## Workflow Pipeline
-
-The model has already been trained using `create_CNN.py`. We provide the corresponding model (`simple_cnn_e.pth`) in the repository, which is ready for direct use.
-
-### STEP1:第一层卷积层参数提取
-
-```bash
-python AttackCNN.py
-```
-完整且自动化提取以及恢复第一层卷积层权重，并进行误差分析，将重构好的权重和偏置分别保存为 layer1_recovered_weights.npy 和 layer1_recovered_bias.npy。
-
-滤掉仅与第一层激活相关的点，筛选出能够渗透到第二层的关键候选点，并保存为 layer1_to_layer2_witnesses.pt。
-
-### STEP2:第二层卷积层参数提取
-
-#### 寻找并提取第二层关键点
-```bash
-python AttackLayer2_findwitnesses.py
-```
-使用第一层的恢复参数,筛选出能够穿透第一层、直接反映第二层神经元行为的Valid Witnesses,将验证通过的点分批次(BATCH_SIZE)存储在 results/BlackBox_witnesses/ 目录下。
-
-#### 将第二层关键点进行聚类
-```bash
-python AttackLayer2_gather.py
-```
-将第二层关键点进行聚类，分别存储对应法向量(存储在results/BlackBox_layer2_results/ 目录下)，以及为后续第三层（Layer 3）攻击筛选有效关键点，存储于layer2_to_layer3_witnesses.pt。
-
-#### 恢复第二层权重
-```bash
-python AttackLayer2.py
-```
-在已知第一层参数的基础上，通过聚合前期采集的关键点数据，利用数学推导解算出第二层的权重和偏置。
-
-#### 误差分析
-```bash
-python check_solution.py
----
-在黑盒攻击场景下，验证通过观察输入输出扰动提取到的参数，在数学上是否与目标模型等价。
 
 ---
 
